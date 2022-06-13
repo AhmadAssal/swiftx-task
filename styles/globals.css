@@ -14,3 +14,9 @@ a {
 * {
   box-sizing: border-box;
 }
+
+* {
+  margin: 0rem;
+  padding: 0rem;
+  font-family: "Raleway", sans-serif;
+}
