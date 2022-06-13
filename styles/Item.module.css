@@ -1,0 +1,22 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  /* align-items: center; */
+  width: 25rem;
+  height: auto;
+  /* background-color: red; */
+}
+
+.cardInfo {
+  padding: 1rem;
+}
+
+.itemTitle {
+  margin-bottom: 1rem;
+}
+
+.image {
+  width: 25rem;
+  height: auto;
+}
