@@ -1,0 +1,20 @@
+import React from "react";
+import styles from "../styles/Item.module.css";
+
+interface ItemProps {
+  imageLink: string;
+  itemName: string;
+  price: string;
+}
+
+export const Item = ({ imageLink, itemName, price }: ItemProps) => {
+  return (
+    <div className={styles.item}>
+      <img className={styles.image} src={imageLink} />
+      <div className={styles.cardInfo}>
+        <h3 className={styles.itemTitle}>{itemName}</h3>
+        <p>{price}</p>
+      </div>
+    </div>
+  );
+};
