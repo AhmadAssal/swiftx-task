@@ -13,7 +13,9 @@ export const Item = ({ imageLink, itemName, price }: ItemProps) => {
       <img className={styles.image} src={imageLink} />
       <div className={styles.cardInfo}>
         <h3 className={styles.itemTitle}>{itemName}</h3>
-        <p>{price}</p>
+        <b>
+          <p className={styles.itemPrice}>{price}</p>
+        </b>
       </div>
     </div>
   );
