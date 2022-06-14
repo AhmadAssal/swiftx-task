@@ -8,20 +8,50 @@
   padding: 0.5rem;
 }
 
+.item:hover {
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  transition: 0.3s ease-in-out;
+}
+
 .cardInfo {
   padding-top: 1rem;
+  width: fit-content;
+  margin-top: -2.5rem;
 }
 
 .itemTitle {
   margin-bottom: 1rem;
-}
-
-.image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  display: inline-block;
+  width: fit-content;
 }
 
 .itemPrice {
   font-weight: bold;
+  width: fit-content;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  max-height: 18rem;
+  object-fit: cover;
+}
+
+.cartIcon {
+  visibility: hidden;
+  width: 4rem;
+  height: 4rem;
+  margin-top: -1.7rem;
+  /* justify-self: end; */
+  align-self: flex-end;
+}
+
+.item:hover .cartIcon {
+  visibility: visible;
+  display: inline-block;
+  transition: display 1s;
+}
+
+.cartIcon:hover {
+  cursor: pointer;
 }
