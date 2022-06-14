@@ -114,3 +114,8 @@
     flex-direction: column;
   }
 }
+
+.home {
+  display: flex;
+  flex-direction: row;
+}
