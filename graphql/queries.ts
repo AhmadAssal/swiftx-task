@@ -7,6 +7,13 @@ export const categories = gql`
       products {
         id
         name
+        prices {
+          currency {
+            label
+            symbol
+          }
+          amount
+        }
       }
     }
   }
