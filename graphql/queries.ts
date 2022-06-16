@@ -18,3 +18,43 @@ export const categories = gql`
     }
   }
 `;
+
+export const categoryNames = gql`
+  query categoryNames {
+    categories {
+      name
+    }
+  }
+`;
+
+export const currencies = gql`
+  query currencies {
+    label
+    symbol
+  }
+`;
+
+export const getProductById = gql`
+  query GetProductById($productId: String!) {
+    product(id: $productId) {
+      name
+      inStock
+      gallery
+      description
+      category
+      brand
+    }
+  }
+`;
+
+export const navBar = gql`
+  query navbar {
+    currencies {
+      label
+      symbol
+    }
+    categories {
+      name
+    }
+  }
+`;
