@@ -1,17 +1,17 @@
-import { isTypeSystemDefinitionNode } from "graphql";
 import React from "react";
 import styles from "../styles/navbar.module.css";
+import { navBar } from "../graphql/queries";
+import { useQuery } from "@apollo/client";
 
 interface category {
   name: string;
 }
-interface NavbarProps {
-  items: category[];
-}
-export const Navbar = ({ items }: NavbarProps) => {
+
+export const Navbar = () => {
+  const { loading, error, data } = useQuery(navBar);
   return (
     <nav className={styles.navbar}>
-      {items?.map((item) => (
+      {data?.categories?.map((item: category) => (
         <a key={item.name} href="google.com" className={styles.navbarItem}>
           {item.name}
         </a>
