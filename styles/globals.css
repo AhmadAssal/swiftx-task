@@ -20,3 +20,7 @@ a {
   padding: 0rem;
   font-family: "Raleway", sans-serif;
 }
+
+.clickable {
+  cursor: pointer;
+}
