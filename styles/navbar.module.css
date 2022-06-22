@@ -1,5 +1,6 @@
 .navbar {
   padding: 1rem;
+  padding-right: 3rem;
   display: flex;
   flex-direction: row;
   position: sticky;
