@@ -4,6 +4,7 @@ import { navBar } from "../graphql/queries";
 import { useQuery } from "@apollo/client";
 import utils from "../styles/utils.module.css";
 import Link from "next/link";
+import Image from "next/image";
 interface category {
   name: string;
 }
@@ -26,7 +27,7 @@ export const Navbar = () => {
           <a className={styles.navbarItem}>{item.name}</a>
         </Link>
       ))}
-      <img src="logo.png" alt="" className={styles.logo} />
+      <img src="/logo.png" alt="" className={styles.logo} />
       <div className={utils.dropdown}>
         <p className={utils.symbol}>{chosenCurrency}</p>
         <div className={utils.dropdownContent}>
@@ -41,7 +42,7 @@ export const Navbar = () => {
           ))}
         </div>
       </div>
-      <img src="cart.png" className={styles.cart} />
+      <Image src="/cart.png" width={20} height={20} className={styles.cart} />
     </nav>
   );
 };
