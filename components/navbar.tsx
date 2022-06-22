@@ -27,7 +27,7 @@ export const Navbar = () => {
       ))}
       <img src="logo.png" alt="" className={styles.logo} />
       <div className={utils.dropdown}>
-        <p className={utils.clickable}>{chosenCurrency}</p>
+        <p className={utils.symbol}>{chosenCurrency}</p>
         <div className={utils.dropdownContent}>
           {data?.currencies?.map((currency: Currency) => (
             <div
