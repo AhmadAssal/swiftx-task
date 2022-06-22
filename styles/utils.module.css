@@ -29,8 +29,10 @@
 }
 
 .dropdown {
-  position: relative;
+  margin: 1rem;
   display: inline-block;
+  cursor: pointer;
+  width: 2rem;
 }
 
 .dropdownContent {
