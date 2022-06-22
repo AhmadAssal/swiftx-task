@@ -3,6 +3,7 @@ import styles from "../styles/navbar.module.css";
 import { navBar } from "../graphql/queries";
 import { useQuery } from "@apollo/client";
 import utils from "../styles/utils.module.css";
+import Link from "next/link";
 interface category {
   name: string;
 }
@@ -21,9 +22,9 @@ export const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       {data?.categories?.map((item: category) => (
-        <a key={item.name} href="google.com" className={styles.navbarItem}>
-          {item.name}
-        </a>
+        <Link href={"/category/" + item.name}>
+          <a className={styles.navbarItem}>{item.name}</a>
+        </Link>
       ))}
       <img src="logo.png" alt="" className={styles.logo} />
       <div className={utils.dropdown}>
