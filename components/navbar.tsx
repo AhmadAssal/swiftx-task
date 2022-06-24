@@ -17,9 +17,6 @@ interface Currency {
 export const Navbar = () => {
   const { loading, error, data } = useQuery(navBar);
   const [chosenCurrency, setChosenCurrency] = useState<string>("$");
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
   return (
     <nav className={styles.navbar}>
       {data?.categories?.map((item: category) => (
