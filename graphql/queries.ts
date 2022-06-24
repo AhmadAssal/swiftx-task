@@ -58,3 +58,16 @@ export const navBar = gql`
     }
   }
 `;
+
+export const productsByCategory = gql`
+  query ProductsByCategory($input: CategoryInput) {
+    category(input: $input) {
+      name
+      products {
+        name
+        gallery
+        inStock
+      }
+    }
+  }
+`;
