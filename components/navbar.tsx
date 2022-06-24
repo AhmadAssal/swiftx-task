@@ -5,6 +5,8 @@ import { useQuery } from "@apollo/client";
 import utils from "../styles/utils.module.css";
 import Link from "next/link";
 import Image from "next/image";
+import { useRecoilState } from "recoil";
+import { currency } from "../state/currency";
 interface category {
   name: string;
 }
@@ -16,7 +18,8 @@ interface Currency {
 
 export const Navbar = () => {
   const { loading, error, data } = useQuery(navBar);
-  const [chosenCurrency, setChosenCurrency] = useState<string>("$");
+  const [chosenCurrency, setChosenCurrency] = useRecoilState<string>(currency);
+
   return (
     <nav className={styles.navbar}>
       {data?.categories?.map((item: category) => (
