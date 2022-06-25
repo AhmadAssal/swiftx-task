@@ -67,6 +67,13 @@ export const productsByCategory = gql`
         name
         gallery
         inStock
+        prices {
+          currency {
+            label
+            symbol
+          }
+          amount
+        }
       }
     }
   }

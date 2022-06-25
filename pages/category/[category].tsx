@@ -7,6 +7,9 @@ import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
 import { productsByCategory } from "../../graphql/queries";
 import { Item } from "../../components/Item";
+import { currency } from "../../state/currency";
+import { useRecoilState } from "recoil";
+
 interface Product {
   name: string;
   gallery: string[];
@@ -15,6 +18,7 @@ interface Product {
 
 const Category: NextPage = () => {
   const router = useRouter();
+  const [chosenCurrency, setChosenCurrency] = useRecoilState(currency);
   const categorySlug = router.query.category;
   const input = { input: { title: categorySlug } };
   const { loading, error, data } = useQuery(productsByCategory, {
