@@ -39,10 +39,25 @@ export const getProductById = gql`
     product(id: $productId) {
       name
       inStock
-      gallery
       description
       category
       brand
+      attributes {
+        name
+        type
+        items {
+          displayValue
+          value
+        }
+      }
+      prices {
+        currency {
+          label
+          symbol
+        }
+        amount
+      }
+      gallery
     }
   }
 `;
