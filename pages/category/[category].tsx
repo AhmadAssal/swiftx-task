@@ -32,6 +32,7 @@ const Category: NextPage = () => {
       ) : data ? (
         data.category.products.map((product: Product) => (
           <Item
+            key={product.name}
             imageLink={product.gallery[0]}
             itemName={product.name}
             price={"23"}
