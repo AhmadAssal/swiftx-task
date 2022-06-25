@@ -20,7 +20,9 @@ const Category: NextPage = () => {
   const router = useRouter();
   const [chosenCurrency, setChosenCurrency] = useRecoilState(currency);
   const categorySlug = router.query.category;
-  const input = { input: { title: categorySlug } };
+  const input = {
+    title: categorySlug,
+  };
   const { loading, error, data } = useQuery(productsByCategory, {
     variables: input,
   });
