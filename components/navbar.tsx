@@ -23,7 +23,7 @@ export const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       {data?.categories?.map((item: category) => (
-        <Link href={"/category/" + item.name}>
+        <Link key={item.name} href={"/category/" + item.name}>
           <a className={styles.navbarItem}>{item.name}</a>
         </Link>
       ))}
@@ -33,6 +33,7 @@ export const Navbar = () => {
         <div className={utils.dropdownContent}>
           {data?.currencies?.map((currency: Currency) => (
             <div
+              key={currency.symbol}
               className={utils.currencyDiv}
               onClick={() => setChosenCurrency(currency.symbol)}
             >
