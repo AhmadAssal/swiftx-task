@@ -10,23 +10,8 @@ import { productsByCategory } from "../../graphql/queries";
 import { Item } from "../../components/Item";
 import { currency } from "../../state/currency";
 import { useRecoilState } from "recoil";
-
-interface Currency {
-  label: string;
-  symbol: string;
-}
-
-interface Price {
-  currency: Currency;
-  amount: number;
-}
-interface Product {
-  name: string;
-  gallery: string[];
-  inStock: boolean;
-  prices: Price[];
-}
-
+import { Product } from "../../types/Product";
+import { Price } from "../../types/Price";
 const Category: NextPage = () => {
   const router = useRouter();
   const [chosenCurrency, setChosenCurrency] = useRecoilState(currency);
