@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { Product } from "../../types/Product";
 import { Price } from "../../types/Price";
 import productStyles from "../../styles/product.module.css";
+import { AttributeButton } from "../../components/AttributeButton";
 const ProductPage: NextPage = () => {
   const [chosenCurrency, setChosenCurrency] = useRecoilState(currency);
   const router = useRouter();
@@ -57,7 +58,9 @@ const ProductPage: NextPage = () => {
                   <div>
                     <h2>{attribute.name}</h2>
                     {attribute.items.map((item: any) => (
-                      <button>{item.displayValue}</button>
+                      <AttributeButton
+                        option={item.displayValue}
+                      ></AttributeButton>
                     ))}
                     <h2>Price:</h2>
                     <h3>{price}</h3>
