@@ -21,7 +21,7 @@ const ProductPage: NextPage = () => {
 
   useEffect(() => {
     console.log(data);
-    setChosenImage(data.product.gallery[0]);
+    setChosenImage(data?.product.gallery[0]);
   }, [data]);
   return (
     <div className={productStyles.grid}>
