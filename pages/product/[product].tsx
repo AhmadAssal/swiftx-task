@@ -5,7 +5,7 @@ import { useRecoilState } from "recoil";
 import { currency } from "../../state/currency";
 import { getProductById } from "../../graphql/queries";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Product } from "../../types/Product";
 import { Price } from "../../types/Price";
 import productStyles from "../../styles/product.module.css";
@@ -17,10 +17,12 @@ const ProductPage: NextPage = () => {
   const { loading, error, data } = useQuery(getProductById, {
     variables: { productId },
   });
+  const [chosenImage, setChosenImage] = useState("");
+
   useEffect(() => {
     console.log(data);
+    setChosenImage(data.product.gallery[0]);
   }, [data]);
-
   return (
     <div className={productStyles.grid}>
       {data ? (
@@ -28,17 +30,17 @@ const ProductPage: NextPage = () => {
           <div>
             {data?.product?.gallery ? (
               data.product.gallery.map((image: string) => (
-                <img src={image} className={productStyles.showcaseImage} />
+                <img
+                  src={image}
+                  className={productStyles.showcaseImage}
+                  onClick={() => setChosenImage(image)}
+                />
               ))
             ) : (
               <></>
             )}
           </div>
-          <img
-            src={data.product.gallery[0]}
-            alt=""
-            className={productStyles.mainImage}
-          />
+          <img src={chosenImage} alt="" className={productStyles.mainImage} />
         </div>
       ) : (
         <h1>loading image</h1>
