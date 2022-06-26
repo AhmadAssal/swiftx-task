@@ -7,3 +7,12 @@
   width: 4rem;
   text-align: center;
 }
+.attribute:hover {
+  color: white;
+  background-color: black;
+}
+
+.chosen {
+  color: white;
+  background-color: black;
+}
