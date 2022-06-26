@@ -1,0 +1,19 @@
+.grid {
+  display: grid;
+  grid-template-columns: 60% 40%;
+}
+
+.productGallery {
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+
+.mainImage {
+  width: 80%;
+  height: auto;
+}
+
+.showcaseImage {
+  width: 60%;
+  height: auto;
+}
