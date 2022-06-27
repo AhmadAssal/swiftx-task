@@ -40,6 +40,7 @@ const Category: NextPage = () => {
             return (
               <Item
                 key={product.name}
+                id={product.id}
                 imageLink={product.gallery[0]}
                 itemName={product.name}
                 price={price}
