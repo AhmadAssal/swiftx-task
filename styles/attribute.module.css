@@ -4,7 +4,7 @@
   cursor: pointer;
   margin: 1rem 1rem 1rem 0rem;
   padding: 1rem;
-  width: 4rem;
+  width: fit-content;
   text-align: center;
 }
 .attribute:hover {
