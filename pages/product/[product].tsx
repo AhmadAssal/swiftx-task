@@ -10,6 +10,7 @@ import { Product } from "../../types/Product";
 import { Price } from "../../types/Price";
 import productStyles from "../../styles/product.module.css";
 import { AttributeButton } from "../../components/AttributeButton";
+import { CartButton } from "../../components/CartButton";
 const ProductPage: NextPage = () => {
   const [chosenCurrency, setChosenCurrency] = useRecoilState(currency);
   const router = useRouter();
@@ -23,11 +24,16 @@ const ProductPage: NextPage = () => {
     console.log(data);
     setChosenImage(data?.product.gallery[0]);
   }, [data]);
+
+  const prices = data?.product.prices.filter(
+    (price: Price) => price.currency.symbol === chosenCurrency
+  );
+
   return (
     <div className={productStyles.grid}>
       {data ? (
         <div className={productStyles.productGallery}>
-          <div>
+          <div className={productStyles.showcaseGallery}>
             {data?.product?.gallery ? (
               data.product.gallery.map((image: string) => (
                 <img
@@ -52,10 +58,6 @@ const ProductPage: NextPage = () => {
           {data.product.attributes ? (
             <div>
               {data.product.attributes.map((attribute: any) => {
-                const prices = data.product.prices.filter(
-                  (price: Price) => price.currency.symbol === chosenCurrency
-                );
-                const price = prices[0].amount + prices[0].currency.symbol;
                 return (
                   <div>
                     <h2>{attribute.name}</h2>
@@ -64,14 +66,6 @@ const ProductPage: NextPage = () => {
                         option={item.displayValue}
                       ></AttributeButton>
                     ))}
-                    <h2>Price:</h2>
-                    <h3>{price}</h3>
-                    <button>Add To Cart</button>
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: data.product.description,
-                      }}
-                    ></div>
                   </div>
                 );
               })}
@@ -79,6 +73,14 @@ const ProductPage: NextPage = () => {
           ) : (
             <></>
           )}
+          <h2>Price:</h2>
+          <h3>{prices[0].amount + prices[0].currency.symbol}</h3>
+          <CartButton></CartButton>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: data.product.description,
+            }}
+          ></div>
         </div>
       ) : (
         <h1>Loading your data</h1>
