@@ -2,8 +2,14 @@ import React from "react";
 import styles from "../styles/CartButton.module.css";
 import Link from "next/link";
 
-interface ButtonProps {}
+interface ButtonProps {
+  onclick: () => void;
+}
 
-export const CartButton = ({}: ButtonProps) => {
-  return <button className={styles.cartButton}>Add To Cart</button>;
+export const CartButton = ({ onclick }: ButtonProps) => {
+  return (
+    <button className={styles.cartButton} onClick={onclick}>
+      Add To Cart
+    </button>
+  );
 };
