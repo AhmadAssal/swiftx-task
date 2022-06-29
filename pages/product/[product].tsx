@@ -3,6 +3,7 @@ import styles from "../../styles/Home.module.css";
 import { useQuery } from "@apollo/client";
 import { useRecoilState } from "recoil";
 import { currency } from "../../state/currency";
+import { cart } from "../../state/cart";
 import { getProductById } from "../../graphql/queries";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -13,6 +14,11 @@ import { AttributeButton } from "../../components/AttributeButton";
 import { CartButton } from "../../components/CartButton";
 const ProductPage: NextPage = () => {
   const [chosenCurrency, setChosenCurrency] = useRecoilState(currency);
+  const [globalCart, setGlobalCart] = useRecoilState(cart);
+  // console.log(globalCart);
+  // useEffect(() => {
+  //   setGlobalCart({ ...globalCart, anotherAttribute: "anothervalue" });
+  // }, []);
   const router = useRouter();
   const productId = router.query.product;
   const { loading, error, data } = useQuery(getProductById, {
@@ -77,7 +83,7 @@ const ProductPage: NextPage = () => {
           <h3 className={productStyles.margin3}>
             {prices[0].amount + prices[0].currency.symbol}
           </h3>
-          <CartButton></CartButton>
+          <CartButton onclick={() => {}}></CartButton>
           <div
             dangerouslySetInnerHTML={{
               __html: data.product.description,
