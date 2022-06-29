@@ -53,8 +53,8 @@ const ProductPage: NextPage = () => {
       )}
       {data ? (
         <div>
-          <h1>{data.product.brand}</h1>
-          <h2>{data.product.name}</h2>
+          <h1 className={productStyles.margin3}>{data.product.brand}</h1>
+          <h2 className={productStyles.margin3}>{data.product.name}</h2>
           {data.product.attributes ? (
             <div>
               {data.product.attributes.map((attribute: any) => {
@@ -74,7 +74,9 @@ const ProductPage: NextPage = () => {
             <></>
           )}
           <h2>Price:</h2>
-          <h3>{prices[0].amount + prices[0].currency.symbol}</h3>
+          <h3 className={productStyles.margin3}>
+            {prices[0].amount + prices[0].currency.symbol}
+          </h3>
           <CartButton></CartButton>
           <div
             dangerouslySetInnerHTML={{
