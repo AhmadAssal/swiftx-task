@@ -15,10 +15,12 @@ import { CartButton } from "../../components/CartButton";
 const ProductPage: NextPage = () => {
   const [chosenCurrency, setChosenCurrency] = useRecoilState(currency);
   const [globalCart, setGlobalCart] = useRecoilState(cart);
+  const [chosenAttribute, setChosenAttribute] = useState({});
   // console.log(globalCart);
   // useEffect(() => {
   //   setGlobalCart({ ...globalCart, anotherAttribute: "anothervalue" });
   // }, []);
+  // console.log(chosenAttribute);
   const router = useRouter();
   const productId = router.query.product;
   const { loading, error, data } = useQuery(getProductById, {
@@ -70,6 +72,14 @@ const ProductPage: NextPage = () => {
                     {attribute.items.map((item: any) => (
                       <AttributeButton
                         option={item.displayValue}
+                        onClick={() => {
+                          const name = attribute.name;
+                          const value = item.value;
+                          setChosenAttribute({
+                            ...chosenAttribute,
+                            [name]: value,
+                          });
+                        }}
                       ></AttributeButton>
                     ))}
                   </div>
