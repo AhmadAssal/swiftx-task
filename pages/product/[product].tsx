@@ -105,6 +105,9 @@ const ProductPage: NextPage = () => {
                 attributes: chosenAttribute,
               };
               setGlobalCart([...globalCart, product]);
+              if (typeof window !== "undefined") {
+                alert(data.product.name + " added to cart.");
+              }
             }}
           ></CartButton>
           <div
