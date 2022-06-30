@@ -16,7 +16,7 @@ import { Attribute } from "../../types/Attribute";
 import { Item } from "../../types/Item";
 const ProductPage: NextPage = () => {
   const [chosenCurrency, setChosenCurrency] = useRecoilState(currency);
-  const [globalCart, setGlobalCart] = useRecoilState(cart);
+  const [globalCart, setGlobalCart] = useRecoilState<any>(cart);
   const [chosenAttribute, setChosenAttribute] = useState({});
   // console.log(globalCart);
   // useEffect(() => {
@@ -95,7 +95,18 @@ const ProductPage: NextPage = () => {
           <h3 className={productStyles.margin3}>
             {prices[0].amount + prices[0].currency.symbol}
           </h3>
-          <CartButton onclick={() => {}}></CartButton>
+          <CartButton
+            onclick={() => {
+              const product = {
+                id: productId,
+                brand: data.product.brand,
+                name: data.product.name,
+                price: prices[0].amount + prices[0].currency.symbol,
+                attributes: chosenAttribute,
+              };
+              setGlobalCart([...globalCart, product]);
+            }}
+          ></CartButton>
           <div
             dangerouslySetInnerHTML={{
               __html: data.product.description,
