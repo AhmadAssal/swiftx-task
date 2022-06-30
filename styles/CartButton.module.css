@@ -6,3 +6,7 @@
   border: 0px;
   margin-bottom: 2rem;
 }
+
+.cartButton:hover {
+  background-color: #197d3c;
+}
