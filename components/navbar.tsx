@@ -3,6 +3,7 @@ import styles from "../styles/navbar.module.css";
 import { navBar } from "../graphql/queries";
 import { useQuery } from "@apollo/client";
 import utils from "../styles/utils.module.css";
+import cartStyles from "../styles/cart.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import { useRecoilState } from "recoil";
@@ -19,7 +20,7 @@ interface Currency {
 export const Navbar = () => {
   const { loading, error, data } = useQuery(navBar);
   const [chosenCurrency, setChosenCurrency] = useRecoilState<string>(currency);
-
+  const [modalDisplay, setModalDisplay] = useState("none");
   return (
     <nav className={styles.navbar}>
       {data?.categories?.map((item: category) => (
@@ -43,7 +44,23 @@ export const Navbar = () => {
           ))}
         </div>
       </div>
-      <Image src="/cart.png" width={20} height={20} className={styles.cart} />
+      <Image
+        src="/cart.png"
+        width={20}
+        height={20}
+        className={`${styles.cart}  ${cartStyles.modal} ${utils.clickable}`}
+        onClick={() => {
+          console.log("clicked");
+          if (modalDisplay === "none") setModalDisplay("block");
+          else setModalDisplay("none");
+        }}
+      />
+      <div
+        className={cartStyles.modalContent}
+        style={{ display: modalDisplay }}
+      >
+        Modal is here.
+      </div>
     </nav>
   );
 };
