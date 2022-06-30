@@ -12,6 +12,8 @@ import { Price } from "../../types/Price";
 import productStyles from "../../styles/product.module.css";
 import { AttributeButton } from "../../components/AttributeButton";
 import { CartButton } from "../../components/CartButton";
+import { Attribute } from "../../types/Attribute";
+import { Item } from "../../types/Item";
 const ProductPage: NextPage = () => {
   const [chosenCurrency, setChosenCurrency] = useRecoilState(currency);
   const [globalCart, setGlobalCart] = useRecoilState(cart);
@@ -65,11 +67,11 @@ const ProductPage: NextPage = () => {
           <h2 className={productStyles.margin3}>{data.product.name}</h2>
           {data.product.attributes ? (
             <div>
-              {data.product.attributes.map((attribute: any) => {
+              {data.product.attributes.map((attribute: Attribute) => {
                 return (
                   <div>
                     <h2>{attribute.name}</h2>
-                    {attribute.items.map((item: any) => (
+                    {attribute.items.map((item: Item) => (
                       <AttributeButton
                         option={item.displayValue}
                         onClick={() => {
