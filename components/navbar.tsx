@@ -44,17 +44,19 @@ export const Navbar = () => {
           ))}
         </div>
       </div>
-      <Image
-        src="/cart.png"
-        width={20}
-        height={20}
-        className={`${styles.cart}  ${cartStyles.modal} ${utils.clickable}`}
-        onClick={() => {
-          console.log("clicked");
-          if (modalDisplay === "none") setModalDisplay("block");
-          else setModalDisplay("none");
-        }}
-      />
+      <Link href="/cart">
+        <Image
+          src="/cart.png"
+          width={20}
+          height={20}
+          className={`${styles.cart}  ${cartStyles.modal} ${utils.clickable}`}
+          onClick={() => {
+            console.log("clicked");
+            if (modalDisplay === "none") setModalDisplay("block");
+            else setModalDisplay("none");
+          }}
+        />
+      </Link>
       <div
         className={cartStyles.modalContent}
         style={{ display: modalDisplay }}
