@@ -11,10 +11,7 @@ import { productsByCategory } from "../graphql/queries";
 
 const Cart: NextPage = () => {
   const [globalCart, setGlobalCart] = useRecoilState<any>(cart);
-  console.log(globalCart);
-  useEffect(() => {
-    console.log(globalCart);
-  }, [globalCart]);
+
   const [products, setProducts] = useState([]);
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -23,7 +20,7 @@ const Cart: NextPage = () => {
       if (productsJson) stuff = JSON.parse(productsJson);
       setProducts(stuff);
     }
-  });
+  }, []);
   return (
     <div className={styles.container}>
       {products.map((product: Product) => (
