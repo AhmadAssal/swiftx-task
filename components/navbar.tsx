@@ -8,6 +8,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRecoilState } from "recoil";
 import { currency } from "../state/currency";
+import { CartModal } from "./CartModal";
 interface category {
   name: string;
 }
@@ -44,23 +45,21 @@ export const Navbar = () => {
           ))}
         </div>
       </div>
-      <Link href="/cart">
-        <Image
-          src="/cart.png"
-          width={20}
-          height={20}
-          className={`${styles.cart}  ${cartStyles.modal} ${utils.clickable}`}
-          onClick={() => {
-            if (modalDisplay === "none") setModalDisplay("block");
-            else setModalDisplay("none");
-          }}
-        />
-      </Link>
+      <Image
+        src="/cart.png"
+        width={20}
+        height={20}
+        className={`${styles.cart}  ${cartStyles.modal} ${utils.clickable}`}
+        onClick={() => {
+          if (modalDisplay === "none") setModalDisplay("block");
+          else setModalDisplay("none");
+        }}
+      />
       <div
         className={cartStyles.modalContent}
         style={{ display: modalDisplay }}
       >
-        Modal is here.
+        <CartModal></CartModal>
       </div>
     </nav>
   );
