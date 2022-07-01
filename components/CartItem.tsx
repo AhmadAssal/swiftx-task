@@ -17,6 +17,7 @@ interface CartItemProps {
   attributes: Attribute[];
   gallery: string[];
   chosenAttribute: any;
+  passedAmount: number;
 }
 
 export const CartItem = ({
@@ -26,8 +27,9 @@ export const CartItem = ({
   attributes,
   gallery,
   chosenAttribute,
+  passedAmount,
 }: CartItemProps) => {
-  const [amount, setAmount] = useState(1);
+  const [amount, setAmount] = useState(passedAmount);
   const [chosenCurrency, setChosenCurrency] = useRecoilState(currency);
   const price: Price[] = prices.filter(
     (price: Price) => price.currency.symbol === chosenCurrency
@@ -70,6 +72,47 @@ export const CartItem = ({
             <></>
           )}
         </div>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <button
+          style={{
+            width: "3rem",
+            height: "3rem",
+            margin: "auto",
+            float: "right",
+            fontSize: "2rem",
+            backgroundColor: "white",
+            border: "1px solid",
+            borderColor: "black",
+          }}
+          onClick={() => {
+            setAmount(amount + 1);
+          }}
+        >
+          +
+        </button>
+        <p style={{ margin: "auto" }}>{amount}</p>
+        <button
+          style={{
+            width: "3rem",
+            height: "3rem",
+            margin: "auto",
+            fontSize: "2rem",
+            backgroundColor: "white",
+            border: "1px solid",
+            borderColor: "black",
+          }}
+          onClick={() => {
+            if (amount > 0) setAmount(amount - 1);
+          }}
+        >
+          -
+        </button>
       </div>
       <img
         src={gallery[0]}
