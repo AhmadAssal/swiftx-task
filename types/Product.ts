@@ -10,6 +10,7 @@ export interface Attribute {
   items: Item[];
 }
 export interface Product {
+  [x: string]: any;
   id: string;
   name: string;
   gallery: string[];
