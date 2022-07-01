@@ -18,6 +18,7 @@ const ProductPage: NextPage = () => {
   const [chosenCurrency, setChosenCurrency] = useRecoilState(currency);
   const [globalCart, setGlobalCart] = useRecoilState<any>(cart);
   const [chosenAttribute, setChosenAttribute] = useState({});
+
   // console.log(globalCart);
   // useEffect(() => {
   //   setGlobalCart({ ...globalCart, anotherAttribute: "anothervalue" });
@@ -31,7 +32,6 @@ const ProductPage: NextPage = () => {
   const [chosenImage, setChosenImage] = useState("");
 
   useEffect(() => {
-    console.log(data);
     setChosenImage(data?.product.gallery[0]);
   }, [data]);
 
@@ -74,6 +74,7 @@ const ProductPage: NextPage = () => {
                     {attribute.items.map((item: Item) => (
                       <AttributeButton
                         option={item.displayValue}
+                        className={""}
                         onClick={() => {
                           const name = attribute.name;
                           const value = item.value;
@@ -101,7 +102,7 @@ const ProductPage: NextPage = () => {
                 id: productId,
                 brand: data.product.brand,
                 name: data.product.name,
-                prices: prices,
+                prices: data.product.prices,
                 gallery: data.product.gallery,
                 attributes: data.product.attributes,
                 chosenAttribute,
