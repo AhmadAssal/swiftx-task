@@ -24,15 +24,18 @@ const Cart: NextPage = () => {
   return (
     <div className={styles.container}>
       {products.map((product: Product) => (
-        <CartItem
-          brand={product.brand}
-          itemName={product.name}
-          prices={product.prices}
-          gallery={product.gallery}
-          attributes={product.attributes}
-          chosenAttribute={product.chosenAttribute}
-          passedAmount={product.amount}
-        ></CartItem>
+        <div>
+          <hr />
+          <CartItem
+            brand={product.brand}
+            itemName={product.name}
+            prices={product.prices}
+            gallery={product.gallery}
+            attributes={product.attributes}
+            chosenAttribute={product.chosenAttribute}
+            passedAmount={product.amount}
+          ></CartItem>
+        </div>
       ))}
     </div>
   );
