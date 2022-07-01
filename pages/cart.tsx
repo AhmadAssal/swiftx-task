@@ -3,89 +3,39 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/cart.module.css";
 import { CartItem } from "../components/CartItem";
-const attributes = [
-  {
-    name: "Size",
-    type: "text",
-    items: [
-      {
-        displayValue: "40",
-        value: "40",
-      },
-      {
-        displayValue: "41",
-        value: "41",
-      },
-    ],
-  },
-];
-const gallery = [
-  "https://tradelinestores.s3.amazonaws.com/media/product_images/40f36622-ef43-420b-b8ec-98f13a9f4c2b.jpg",
-  "https://arabhardware.net/wp-content/uploads/2020/11/Apple_new-macbookair-wallpaper-screen_11102020_big.jpg.large_.jpg",
-];
+import { cart } from "../state/cart";
+import { useRecoilState } from "recoil";
+import { useEffect, useState } from "react";
+import { Product } from "../types/Product";
+import { productsByCategory } from "../graphql/queries";
 
-const prices = [
-  {
-    currency: {
-      label: "USD",
-      symbol: "$",
-    },
-    amount: 144.69,
-  },
-  {
-    currency: {
-      label: "GBP",
-      symbol: "£",
-    },
-    amount: 104,
-  },
-  {
-    currency: {
-      label: "AUD",
-      symbol: "A$",
-    },
-    amount: 186.65,
-  },
-  {
-    currency: {
-      label: "JPY",
-      symbol: "¥",
-    },
-    amount: 15625.24,
-  },
-  {
-    currency: {
-      label: "RUB",
-      symbol: "₽",
-    },
-    amount: 10941.76,
-  },
-];
 const Cart: NextPage = () => {
+  const [globalCart, setGlobalCart] = useRecoilState<any>(cart);
+  console.log(globalCart);
+  useEffect(() => {
+    console.log(globalCart);
+  }, [globalCart]);
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      let productsJson = localStorage.getItem("cart");
+      let stuff = [];
+      if (productsJson) stuff = JSON.parse(productsJson);
+      setProducts(stuff);
+    }
+  });
   return (
     <div className={styles.container}>
-      <h1>CART</h1>
-      <CartItem
-        brand="Apple"
-        itemName="Macbook Air"
-        attributes={attributes}
-        gallery={gallery}
-        prices={prices}
-      ></CartItem>
-      <CartItem
-        brand="Apple"
-        itemName="Macbook Air"
-        attributes={attributes}
-        gallery={gallery}
-        prices={prices}
-      ></CartItem>
-      <CartItem
-        brand="Apple"
-        itemName="Macbook Air"
-        attributes={attributes}
-        gallery={gallery}
-        prices={prices}
-      ></CartItem>
+      {products.map((product: Product) => (
+        <CartItem
+          brand={product.brand}
+          itemName={product.name}
+          prices={product.prices}
+          gallery={product.gallery}
+          attributes={product.attributes}
+          chosenAttribute={product.chosenAttribute}
+        ></CartItem>
+      ))}
     </div>
   );
 };
