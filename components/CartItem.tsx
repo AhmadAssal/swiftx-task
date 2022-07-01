@@ -33,42 +33,55 @@ export const CartItem = ({
     (price: Price) => price.currency.symbol === chosenCurrency
   );
   return (
-    <div>
-      <h1>{brand}</h1>
-      <h2>{itemName}</h2>
-      <h3>{price[0].amount + price[0].currency.symbol}</h3>
-      <div>
-        {attributes ? (
-          attributes.map((attribute: Attribute) => {
-            return (
-              <div>
-                {/* <h2>{attribute.name}</h2> */}
-                {attribute.items.map((item: Item) => {
-                  let chosen = false;
-                  if (item.value === chosenAttribute[attribute.name])
-                    chosen = true;
-                  return (
-                    <AttributeButton
-                      option={item.displayValue}
-                      className={chosen ? attributeStyles.chosen : ""}
-                      onClick={() => {
-                        const name = attribute.name;
-                        const value = item.value;
-                        // setChosenAttribute({
-                        //   ...chosenAttribute,
-                        //   [name]: value,
-                        // });
-                      }}
-                    ></AttributeButton>
-                  );
-                })}
-              </div>
-            );
-          })
-        ) : (
-          <></>
-        )}
+    <div style={{ margin: "2rem", display: "flex", flexDirection: "row" }}>
+      <div style={{ width: "50%" }}>
+        <h1>{brand}</h1>
+        <h2>{itemName}</h2>
+        {price ? <h3>{price[0].amount + price[0].currency.symbol}</h3> : <></>}
+        <div style={{ display: "inline-block" }}>
+          {attributes ? (
+            attributes.map((attribute: Attribute) => {
+              return (
+                <div>
+                  {/* <h2>{attribute.name}</h2> */}
+                  {attribute.items.map((item: Item) => {
+                    let chosen = false;
+                    if (item.value === chosenAttribute[attribute.name])
+                      chosen = true;
+                    return (
+                      <AttributeButton
+                        option={item.displayValue}
+                        className={chosen ? attributeStyles.chosen : ""}
+                        onClick={() => {
+                          const name = attribute.name;
+                          const value = item.value;
+                          // setChosenAttribute({
+                          //   ...chosenAttribute,
+                          //   [name]: value,
+                          // });
+                        }}
+                      ></AttributeButton>
+                    );
+                  })}
+                </div>
+              );
+            })
+          ) : (
+            <></>
+          )}
+        </div>
       </div>
+      <img
+        src={gallery[0]}
+        style={{
+          display: "inline-block",
+          float: "right",
+          width: "20%",
+          height: "auto",
+          maxHeight: "100%",
+          margin: "auto",
+        }}
+      />
     </div>
   );
 };
