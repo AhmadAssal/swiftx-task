@@ -106,6 +106,7 @@ const ProductPage: NextPage = () => {
                 gallery: data.product.gallery,
                 attributes: data.product.attributes,
                 chosenAttribute,
+                amount: 1,
               };
 
               if (typeof window !== "undefined") {
