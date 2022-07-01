@@ -51,7 +51,6 @@ export const Navbar = () => {
           height={20}
           className={`${styles.cart}  ${cartStyles.modal} ${utils.clickable}`}
           onClick={() => {
-            console.log("clicked");
             if (modalDisplay === "none") setModalDisplay("block");
             else setModalDisplay("none");
           }}
