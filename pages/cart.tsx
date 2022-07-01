@@ -31,6 +31,7 @@ const Cart: NextPage = () => {
           gallery={product.gallery}
           attributes={product.attributes}
           chosenAttribute={product.chosenAttribute}
+          passedAmount={product.amount}
         ></CartItem>
       ))}
     </div>
