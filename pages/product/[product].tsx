@@ -101,13 +101,19 @@ const ProductPage: NextPage = () => {
                 id: productId,
                 brand: data.product.brand,
                 name: data.product.name,
-                price: prices[0].amount + prices[0].currency.symbol,
-                attributes: chosenAttribute,
+                prices: prices,
+                gallery: data.product.gallery,
+                attributes: data.product.attributes,
+                chosenAttribute,
               };
-              setGlobalCart([...globalCart, product]);
+
               if (typeof window !== "undefined") {
-                alert(data.product.name + " added to cart.");
+                localStorage.setItem(
+                  "cart",
+                  JSON.stringify([...globalCart, product])
+                );
               }
+              setGlobalCart([...globalCart, product]);
             }}
           ></CartButton>
           <div
